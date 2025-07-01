@@ -171,3 +171,64 @@
     transform: rotate(0deg);
   }
 }
+
+/* Mobile-specific styles for Google Form */
+@media (max-width: 768px) {
+  /* Container adjustments */
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 100%;
+  }
+  
+  /* Card adjustments */
+  .card {
+    border: none;
+    border-radius: 0;
+    box-shadow: none !important;
+  }
+  
+  .card-body {
+    padding: 0 !important;
+  }
+  
+  /* Iframe container adjustments */
+  .responsive-iframe-container {
+    padding-top: 0;
+    height: 100vh; /* Full viewport height */
+    overflow: visible;
+    margin-bottom: 0;
+  }
+  
+  /* Iframe adjustments */
+  .responsive-iframe {
+    position: relative !important;
+    height: 100vh !important; /* Full viewport height */
+    width: 100vw !important; /* Full viewport width */
+    border: none;
+    overflow: visible;
+    -webkit-overflow-scrolling: touch;
+    transform: scale(1.02); /* Slightly scale up to remove borders */
+    margin-left: -1%; /* Adjust for the scaling */
+  }
+  
+  /* Hide animations on mobile to improve performance */
+  .shuttlecock, .racquet, .court-line, .badminton-net {
+    display: none;
+  }
+  
+  /* Make header more compact */
+  .header {
+    padding: 10px 0;
+    margin-bottom: 10px;
+  }
+  
+  .logo {
+    max-width: 60px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    margin-top: 0.5rem !important;
+  }
+}
