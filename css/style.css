@@ -31,6 +31,31 @@
   }
 }
 
+/* Add these styles to improve Google Form mobile experience */
+@media (max-width: 768px) {
+  .responsive-iframe-container {
+    padding-top: 0;
+    height: 700px;
+    overflow-y: visible;
+  }
+  
+  .responsive-iframe {
+    position: relative;
+    height: 700px;
+    min-height: 500px;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .card-body {
+    padding: 10px !important;
+  }
+  
+  .container {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
 /* Animated shuttlecock styles */
 .shuttlecock {
   position: absolute;
