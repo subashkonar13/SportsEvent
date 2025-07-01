@@ -1,430 +1,361 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sports Event Registration</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <style>
-    .logo {
-      max-width: 100px;
-      animation: fadeIn 1.5s;
-    }
-    .header {
-      background-color: #f8f9fa;
-      padding: 20px 0;
-      margin-bottom: 30px;
-      animation: slideInDown 1s;
-    }
-    .form-container {
-      animation: fadeIn 2s;
-    }
-    .responsive-iframe-container {
-      position: relative;
-      overflow: hidden;
-      padding-top: 56.25%;
-      margin-bottom: 30px;
-    }
-    .responsive-iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    @media (max-width: 768px) {
-      .logo {
-        max-width: 80px;
-      }
-    }
-    
-    /* Badminton Racquet Swing Animation */
-    .badminton-racquet {
-      position: absolute;
-      width: 60px;
-      height: 80px;
-      z-index: 100;
-      opacity: 0.6;
-    }
-    
-    .racquet-1 {
-      top: 20%;
-      left: 10%;
-      animation: racquetSwing1 4s infinite ease-in-out;
-      animation-delay: 0s;
-    }
-    
-    .racquet-2 {
-      top: 60%;
-      right: 15%;
-      animation: racquetSwing2 3.5s infinite ease-in-out;
-      animation-delay: 1.5s;
-      transform: scaleX(-1); /* Flip horizontally */
-    }
-    
-    .racquet-3 {
-      top: 35%;
-      left: 20%;
-      animation: racquetSwing3 5s infinite ease-in-out;
-      animation-delay: 3s;
-    }
-    
-    /* Racquet SVG */
-    .racquet-svg {
-      width: 100%;
-      height: 100%;
-    }
-    
-    @keyframes racquetSwing1 {
-      0% { transform: rotate(-30deg) translateY(0px); }
-      25% { transform: rotate(15deg) translateY(-10px); }
-      50% { transform: rotate(45deg) translateY(-5px); }
-      75% { transform: rotate(15deg) translateY(-10px); }
-      100% { transform: rotate(-30deg) translateY(0px); }
-    }
-    
-    @keyframes racquetSwing2 {
-      0% { transform: scaleX(-1) rotate(30deg) translateY(0px); }
-      30% { transform: scaleX(-1) rotate(-20deg) translateY(-8px); }
-      60% { transform: scaleX(-1) rotate(-50deg) translateY(-3px); }
-      80% { transform: scaleX(-1) rotate(-20deg) translateY(-8px); }
-      100% { transform: scaleX(-1) rotate(30deg) translateY(0px); }
-    }
-    
-    @keyframes racquetSwing3 {
-      0% { transform: rotate(0deg) translateY(0px) scale(1); }
-      20% { transform: rotate(25deg) translateY(-12px) scale(1.1); }
-      40% { transform: rotate(60deg) translateY(-8px) scale(1); }
-      60% { transform: rotate(25deg) translateY(-15px) scale(1.1); }
-      80% { transform: rotate(-10deg) translateY(-5px) scale(1); }
-      100% { transform: rotate(0deg) translateY(0px) scale(1); }
-    }
-    
-    /* Shuttlecock Animation */
-    .shuttlecock {
-      position: absolute;
-      width: 35px;
-      height: 35px;
-      z-index: 90;
-      opacity: 0.7;
-    }
-    
-    .shuttle-1 {
-      top: 15%;
-      left: -35px;
-      animation: shuttleFly1 6s infinite linear;
-      animation-delay: 0.5s;
-    }
-    
-    .shuttle-2 {
-      top: 45%;
-      right: -35px;
-      animation: shuttleFly2 5s infinite linear;
-      animation-delay: 2s;
-    }
-    
-    .shuttle-3 {
-      top: 75%;
-      left: -35px;
-      animation: shuttleFly3 7s infinite linear;
-      animation-delay: 4s;
-    }
-    
-    .shuttle-4 {
-      top: 30%;
-      left: -35px;
-      animation: shuttleFly4 8s infinite linear;
-      animation-delay: 6s;
-    }
-    
-    /* Shuttlecock SVG */
-    .shuttle-svg {
-      width: 100%;
-      height: 100%;
-    }
-    
-    @keyframes shuttleFly1 {
-      0% { 
-        left: -35px; 
-        transform: rotate(0deg) translateY(0px); 
-      }
-      20% { 
-        transform: rotate(45deg) translateY(-20px); 
-      }
-      40% { 
-        transform: rotate(90deg) translateY(-10px); 
-      }
-      60% { 
-        transform: rotate(135deg) translateY(-25px); 
-      }
-      80% { 
-        transform: rotate(180deg) translateY(-5px); 
-      }
-      100% { 
-        left: calc(100% + 35px); 
-        transform: rotate(225deg) translateY(-15px); 
-      }
-    }
-    
-    @keyframes shuttleFly2 {
-      0% { 
-        right: -35px; 
-        transform: rotate(180deg) translateY(0px); 
-      }
-      25% { 
-        transform: rotate(225deg) translateY(15px); 
-      }
-      50% { 
-        transform: rotate(270deg) translateY(8px); 
-      }
-      75% { 
-        transform: rotate(315deg) translateY(20px); 
-      }
-      100% { 
-        right: calc(100% + 35px); 
-        transform: rotate(360deg) translateY(10px); 
-      }
-    }
-    
-    @keyframes shuttleFly3 {
-      0% { 
-        left: -35px; 
-        transform: rotate(0deg) translateY(0px); 
-      }
-      30% { 
-        transform: rotate(60deg) translateY(-15px); 
-      }
-      60% { 
-        transform: rotate(120deg) translateY(-30px); 
-      }
-      90% { 
-        transform: rotate(180deg) translateY(-10px); 
-      }
-      100% { 
-        left: calc(100% + 35px); 
-        transform: rotate(200deg) translateY(-20px); 
-      }
-    }
-    
-    @keyframes shuttleFly4 {
-      0% { 
-        left: -35px; 
-        transform: rotate(0deg) translateY(0px) scale(1); 
-      }
-      25% { 
-        transform: rotate(90deg) translateY(-18px) scale(1.2); 
-      }
-      50% { 
-        transform: rotate(180deg) translateY(-25px) scale(1); 
-      }
-      75% { 
-        transform: rotate(270deg) translateY(-12px) scale(1.1); 
-      }
-      100% { 
-        left: calc(100% + 35px); 
-        transform: rotate(360deg) translateY(-8px) scale(1); 
-      }
-    }
-    
-    /* Floating court lines */
-    .court-line {
-      position: absolute;
-      background-color: rgba(26, 188, 156, 0.4);
-      animation: float 8s infinite ease-in-out;
-      z-index: 1;
-    }
-    
-    .line-1 {
-      width: 100px;
-      height: 2px;
-      top: 25%;
-      left: 20%;
-      animation-delay: 0s;
-    }
-    
-    .line-2 {
-      width: 80px;
-      height: 2px;
-      top: 65%;
-      right: 25%;
-      animation-delay: 2s;
-    }
-    
-    .line-3 {
-      width: 60px;
-      height: 2px;
-      top: 40%;
-      left: 60%;
-      animation-delay: 4s;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
-      50% { transform: translateY(-15px) rotate(3deg); opacity: 0.7; }
-    }
-    
-    /* Net animation */
-    .badminton-net {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 3px;
-      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 20%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.6) 80%, transparent 100%);
-      animation: netWave 3s infinite ease-in-out;
-      z-index: 2;
-      opacity: 0.5;
-    }
-    
-    @keyframes netWave {
-      0%, 100% { transform: translateX(-50%) scaleY(1); }
-      50% { transform: translateX(-50%) scaleY(1.2); }
-    }
-  </style>
-</head>
-<body>
-  <!-- Badminton Racquets -->
-  <div class="badminton-racquet racquet-1">
-    <svg class="racquet-svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Racquet Head -->
-      <ellipse cx="50" cy="35" rx="25" ry="30" stroke="#8B4513" stroke-width="4" fill="none"/>
-      <!-- Strings -->
-      <line x1="30" y1="35" x2="70" y2="35" stroke="#FFF" stroke-width="1"/>
-      <line x1="35" y1="15" x2="35" y2="55" stroke="#FFF" stroke-width="1"/>
-      <line x1="45" y1="10" x2="45" y2="60" stroke="#FFF" stroke-width="1"/>
-      <line x1="55" y1="10" x2="55" y2="60" stroke="#FFF" stroke-width="1"/>
-      <line x1="65" y1="15" x2="65" y2="55" stroke="#FFF" stroke-width="1"/>
-      <line x1="30" y1="25" x2="70" y2="25" stroke="#FFF" stroke-width="1"/>
-      <line x1="30" y1="45" x2="70" y2="45" stroke="#FFF" stroke-width="1"/>
-      <!-- Handle -->
-      <rect x="47" y="65" width="6" height="60" fill="#654321"/>
-      <rect x="45" y="120" width="10" height="8" fill="#8B4513"/>
-    </svg>
-  </div>
+// This is a client-side simulation for GitHub Pages
+// In a real implementation, you would send data to a server
+
+document.addEventListener('DOMContentLoaded', function() {
+  const categorySelect = document.getElementById('category');
+  const sameGenderPartnerSection = document.getElementById('sameGenderPartnerSection');
+  const mixedDoublesPartnerSection = document.getElementById('mixedDoublesPartnerSection');
+  const registrationForm = document.getElementById('registrationForm');
+  const successModal = document.getElementById('successModal') ? 
+    new bootstrap.Modal(document.getElementById('successModal')) : null;
   
-  <div class="badminton-racquet racquet-2">
-    <svg class="racquet-svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Racquet Head -->
-      <ellipse cx="50" cy="35" rx="25" ry="30" stroke="#E74C3C" stroke-width="4" fill="none"/>
-      <!-- Strings -->
-      <line x1="30" y1="35" x2="70" y2="35" stroke="#FFF" stroke-width="1"/>
-      <line x1="35" y1="15" x2="35" y2="55" stroke="#FFF" stroke-width="1"/>
-      <line x1="45" y1="10" x2="45" y2="60" stroke="#FFF" stroke-width="1"/>
-      <line x1="55" y1="10" x2="55" y2="60" stroke="#FFF" stroke-width="1"/>
-      <line x1="65" y1="15" x2="65" y2="55" stroke="#FFF" stroke-width="1"/>
-      <line x1="30" y1="25" x2="70" y2="25" stroke="#FFF" stroke-width="1"/>
-      <line x1="30" y1="45" x2="70" y2="45" stroke="#FFF" stroke-width="1"/>
-      <!-- Handle -->
-      <rect x="47" y="65" width="6" height="60" fill="#654321"/>
-      <rect x="45" y="120" width="10" height="8" fill="#E74C3C"/>
-    </svg>
-  </div>
-
-  <div class="badminton-racquet racquet-3">
-    <svg class="racquet-svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Racquet Head -->
-      <ellipse cx="50" cy="35" rx="25" ry="30" stroke="#3498DB" stroke-width="4" fill="none"/>
-      <!-- Strings -->
-      <line x1="30" y1="35" x2="70" y2="35" stroke="#FFF" stroke-width="1"/>
-      <line x1="35" y1="15" x2="35" y2="55" stroke="#FFF" stroke-width="1"/>
-      <line x1="45" y1="10" x2="45" y2="60" stroke="#FFF" stroke-width="1"/>
-      <line x1="55" y1="10" x2="55" y2="60" stroke="#FFF" stroke-width="1"/>
-      <line x1="65" y1="15" x2="65" y2="55" stroke="#FFF" stroke-width="1"/>
-      <line x1="30" y1="25" x2="70" y2="25" stroke="#FFF" stroke-width="1"/>
-      <line x1="30" y1="45" x2="70" y2="45" stroke="#FFF" stroke-width="1"/>
-      <!-- Handle -->
-      <rect x="47" y="65" width="6" height="60" fill="#654321"/>
-      <rect x="45" y="120" width="10" height="8" fill="#3498DB"/>
-    </svg>
-  </div>
-
-  <!-- Shuttlecocks -->
-  <div class="shuttlecock shuttle-1">
-    <svg class="shuttle-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Cork head -->
-      <circle cx="50" cy="70" r="8" fill="#F5DEB3"/>
-      <circle cx="50" cy="70" r="6" fill="#DEB887"/>
-      <!-- Feathers -->
-      <path d="M50 62 L45 20 L50 25 L55 20 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M42 64 L25 25 L35 35 L45 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M58 64 L75 25 L65 35 L55 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M38 66 L20 35 L32 40 L42 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M62 66 L80 35 L68 40 L58 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-    </svg>
-  </div>
+  // Improve Google Form mobile responsiveness
+  adjustGoogleFormForMobile();
   
-  <div class="shuttlecock shuttle-2">
-    <svg class="shuttle-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Cork head -->
-      <circle cx="50" cy="70" r="8" fill="#F5DEB3"/>
-      <circle cx="50" cy="70" r="6" fill="#DEB887"/>
-      <!-- Feathers -->
-      <path d="M50 62 L45 20 L50 25 L55 20 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M42 64 L25 25 L35 35 L45 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M58 64 L75 25 L65 35 L55 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M38 66 L20 35 L32 40 L42 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M62 66 L80 35 L68 40 L58 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-    </svg>
-  </div>
+  // Handle window resize events to readjust the form
+  window.addEventListener('resize', adjustGoogleFormForMobile);
   
-  <div class="shuttlecock shuttle-3">
-    <svg class="shuttle-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Cork head -->
-      <circle cx="50" cy="70" r="8" fill="#F5DEB3"/>
-      <circle cx="50" cy="70" r="6" fill="#DEB887"/>
-      <!-- Feathers -->
-      <path d="M50 62 L45 20 L50 25 L55 20 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M42 64 L25 25 L35 35 L45 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M58 64 L75 25 L65 35 L55 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M38 66 L20 35 L32 40 L42 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M62 66 L80 35 L68 40 L58 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-    </svg>
-  </div>
+  // Function to adjust Google Form for better mobile experience
+  function adjustGoogleFormForMobile() {
+    const iframeContainer = document.querySelector('.responsive-iframe-container');
+    const iframe = document.querySelector('.responsive-iframe');
+    
+    if (!iframeContainer || !iframe) return;
+    
+    // Check if we're on mobile
+    if (window.innerWidth <= 768) {
+      // Adjust container height for mobile
+      iframeContainer.style.height = '500px';
+      iframeContainer.style.paddingTop = '0';
+      
+      // Set iframe to 100% width and fixed height with scrolling enabled
+      iframe.style.position = 'relative';
+      iframe.style.height = '100%';
+      iframe.style.minHeight = '500px';
+      iframe.scrolling = 'yes';
+      
+      // Add mobile-specific styles
+      if (!document.getElementById('mobile-form-styles')) {
+        const styleEl = document.createElement('style');
+        styleEl.id = 'mobile-form-styles';
+        styleEl.textContent = `
+          @media (max-width: 768px) {
+            .responsive-iframe-container {
+              overflow-y: visible;
+              height: auto !important;
+              min-height: 500px;
+            }
+            .responsive-iframe {
+              position: relative !important;
+              height: 700px !important;
+              overflow: visible;
+              -webkit-overflow-scrolling: touch;
+            }
+          }
+        `;
+        document.head.appendChild(styleEl);
+      }
+    } else {
+      // Reset to desktop styles
+      iframeContainer.style.height = '';
+      iframeContainer.style.paddingTop = '56.25%';
+      
+      iframe.style.position = 'absolute';
+      iframe.style.height = '100%';
+      iframe.style.minHeight = '';
+      iframe.scrolling = '';
+    }
+  }
 
-  <div class="shuttlecock shuttle-4">
-    <svg class="shuttle-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Cork head -->
-      <circle cx="50" cy="70" r="8" fill="#F5DEB3"/>
-      <circle cx="50" cy="70" r="6" fill="#DEB887"/>
-      <!-- Feathers -->
-      <path d="M50 62 L45 20 L50 25 L55 20 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M42 64 L25 25 L35 35 L45 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M58 64 L75 25 L65 35 L55 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M38 66 L20 35 L32 40 L42 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-      <path d="M62 66 L80 35 L68 40 L58 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
-    </svg>
-  </div>
+  // Show/hide partner sections based on category selection
+  if (categorySelect) {
+    categorySelect.addEventListener('change', function() {
+      if (this.value === 'mens_doubles' || this.value === 'womens_doubles') {
+        sameGenderPartnerSection.style.display = 'block';
+        mixedDoublesPartnerSection.style.display = 'none';
+      } else if (this.value === 'mixed_doubles') {
+        sameGenderPartnerSection.style.display = 'none';
+        mixedDoublesPartnerSection.style.display = 'block';
+      } else {
+        sameGenderPartnerSection.style.display = 'none';
+        mixedDoublesPartnerSection.style.display = 'none';
+      }
+    });
+  }
 
-  <!-- Floating court lines -->
-  <div class="court-line line-1"></div>
-  <div class="court-line line-2"></div>
-  <div class="court-line line-3"></div>
+  // Form submission with detailed logging and validation
+  if (registrationForm) {
+    registrationForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      console.log('Form submitted');
+      
+      // Get form elements directly
+      const eventTypeEl = document.getElementById('eventType');
+      const nameEl = document.getElementById('name');
+      const flatNumberEl = document.getElementById('flatNumber');
+      const mobileNumberEl = document.getElementById('mobileNumber');
+      const categoryEl = document.getElementById('category');
+      
+      // Validate required fields
+      if (!eventTypeEl || !nameEl || !flatNumberEl || !mobileNumberEl || !categoryEl) {
+        console.error('Error: One or more required form elements not found in the DOM');
+        alert('Form error: Required fields are missing. Please refresh the page and try again.');
+        return;
+      }
+      
+      // Collect form data with validation
+      const formData = {
+        eventType: eventTypeEl.value,
+        name: nameEl.value,
+        flatNumber: flatNumberEl.value,
+        mobileNumber: mobileNumberEl.value,
+        category: categoryEl.value,
+        partnerName: document.getElementById('partnerName')?.value || '',
+        partnerFlatNumber: document.getElementById('partnerFlatNumber')?.value || '',
+        mixedPartnerName: document.getElementById('mixedPartnerName')?.value || '',
+        mixedPartnerFlatNumber: document.getElementById('mixedPartnerFlatNumber')?.value || ''
+      };
+      
+      // Validate required values
+      const missingFields = [];
+      if (!formData.eventType) missingFields.push('Event Type');
+      if (!formData.name) missingFields.push('Name');
+      if (!formData.flatNumber) missingFields.push('Flat Number');
+      if (!formData.mobileNumber) missingFields.push('Mobile Number');
+      if (!formData.category) missingFields.push('Category');
+      
+      if (missingFields.length > 0) {
+        console.error('Missing required fields:', missingFields);
+        alert(`Please fill in the following required fields: ${missingFields.join(', ')}`);
+        return;
+      }
+      
+      console.log('Form data collected:', formData);
+      
+      // Send data to server with detailed error handling
+      fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        console.log('Response status:', response.status);
+        if (!response.ok) {
+          return response.text().then(text => {
+            throw new Error(`Server responded with status ${response.status}: ${text}`);
+          });
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Registration successful:', data);
+        if (successModal) successModal.show();
+        registrationForm.reset();
+        if (sameGenderPartnerSection) sameGenderPartnerSection.style.display = 'none';
+        if (mixedDoublesPartnerSection) mixedDoublesPartnerSection.style.display = 'none';
+      })
+      .catch(error => {
+        console.error('Error submitting registration:', error);
+        alert(`Registration failed: ${error.message}`);
+      });
+    });
+  }
+});
 
-  <!-- Badminton net -->
-  <div class="badminton-net"></div>
+// Badminton sound generator
+class BadmintonSoundGenerator {
+  constructor() {
+    this.isInitialized = false;
+    this.setupAudio();
+  }
+  
+  async setupAudio() {
+    try {
+      // Create synthesizer for racquet hit sound with moderate volume
+      this.hitSynth = new Tone.PolySynth(Tone.Synth, {
+        oscillator: {
+          type: "triangle8"
+        },
+        envelope: {
+          attack: 0.001,
+          decay: 0.1,
+          sustain: 0.1,
+          release: 0.3
+        },
+        volume: -20 // Moderate volume
+      }).toDestination();
+      
+      // Create noise for whoosh sound
+      this.whooshNoise = new Tone.Noise({
+        type: "white",
+        volume: -25 // Moderate volume
+      }).toDestination();
+      
+      // Create filter for whoosh
+      this.whooshFilter = new Tone.Filter({
+        frequency: 1000,
+        type: "lowpass",
+        Q: 2
+      });
+      
+      // Create compressor for better dynamics
+      this.compressor = new Tone.Compressor({
+        threshold: -24,
+        ratio: 4,
+        attack: 0.005,
+        release: 0.1
+      }).toDestination();
+      
+      // Create distortion for smash effect
+      this.distortion = new Tone.Distortion({
+        distortion: 0.2,
+        wet: 0.3
+      });
+      
+      // Connect effects chain
+      this.whooshNoise.connect(this.whooshFilter);
+      this.whooshFilter.connect(this.compressor);
+      this.hitSynth.connect(this.distortion);
+      this.distortion.connect(this.compressor);
+      
+      this.isInitialized = true;
+    } catch (error) {
+      console.log("Audio setup failed:", error);
+    }
+  }
+  
+  async playSmashSound() {
+    if (!this.isInitialized) return;
+    
+    try {
+      // Ensure audio context is started
+      if (Tone.context.state !== 'running') {
+        await Tone.start();
+      }
+      
+      // Play whoosh sound (racquet swing)
+      this.whooshNoise.start();
+      this.whooshFilter.frequency.rampTo(2000, 0.1);
+      this.whooshFilter.frequency.rampTo(200, 0.2);
+      this.whooshNoise.stop("+0.3");
+      
+      // Play hit sound (contact with shuttlecock) - more pronounced smash
+      setTimeout(() => {
+        // Play a chord for more impact
+        this.hitSynth.triggerAttackRelease(["C4", "G4", "E4"], "16n");
+        
+        // Add a quick follow-up note for the "ping" effect
+        setTimeout(() => {
+          this.hitSynth.triggerAttackRelease("A4", "32n", undefined, 0.8);
+        }, 30);
+      }, 150);
+      
+    } catch (error) {
+      console.log("Sound playback failed:", error);
+    }
+  }
+  
+  // New method specifically for racquet-shuttlecock collision
+  async playRacquetHitSound() {
+    if (!this.isInitialized) return;
+    
+    try {
+      // Ensure audio context is started
+      if (Tone.context.state !== 'running') {
+        await Tone.start();
+      }
+      
+      // Create a more pronounced "smack" sound
+      this.hitSynth.triggerAttackRelease(["C3", "G3"], "16n", undefined, 0.9);
+      
+      // Add a quick high-pitched "ping" for the shuttlecock
+      setTimeout(() => {
+        this.hitSynth.triggerAttackRelease("C5", "32n", undefined, 0.7);
+      }, 10);
+      
+    } catch (error) {
+      console.log("Sound playback failed:", error);
+    }
+  }
+}
 
-  <div class="header text-center">
-    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHEyOWkza2xocGt4cmI0NG9sb283NDd6dGlyZmZoOHlwczhtYWJtNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/UuKevjxS75vbLjiHsV/giphy.gif" alt="Badminton Logo" class="logo">
-    <h1 class="mt-3 animate__animated animate__fadeIn">Sports Event Registration</h1>
-  </div>
+// Initialize sound generator
+const soundGen = new BadmintonSoundGenerator();
 
-  <div class="container form-container">
-    <div class="row justify-content-center">
-      <div class="col-md-10">
-        <div class="card shadow-lg">
-          <div class="card-body p-4">
-            <div class="responsive-iframe-container">
-              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdJicUtz-nssfJPSjuNAlMyYBJbxDrU5k0x3XXvhH2Tkz_aHg/viewform?embedded=true" class="responsive-iframe" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+// Calculate collision points between racquets and shuttlecocks
+function calculateCollisionTimes() {
+  const collisionTimes = [];
+  
+  // Racquet 1 animation is 8s with 1s delay
+  // Shuttlecock 1 animation is 10s with 0s delay
+  collisionTimes.push(3000); // Approximate collision time in ms
+  
+  // Racquet 2 animation is 8s with 4s delay
+  // Shuttlecock 2 animation is 10s with 3s delay
+  collisionTimes.push(7000); // Approximate collision time in ms
+  
+  // Racquet 3 animation is 8s with 7s delay
+  // Shuttlecock 3 animation is 10s with 6s delay
+  collisionTimes.push(11000); // Approximate collision time in ms
+  
+  return collisionTimes;
+}
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+// Play sounds at calculated collision times
+function playCollisionSounds() {
+  const collisionTimes = calculateCollisionTimes();
+  
+  // Set up recurring collision sounds
+  collisionTimes.forEach((time, index) => {
+    // Initial collision
+    setTimeout(() => {
+      soundGen.playRacquetHitSound();
+    }, time);
+    
+    // Recurring collisions
+    setInterval(() => {
+      soundGen.playRacquetHitSound();
+    }, 10000); // Every 10 seconds (animation cycle)
+  });
+}
+
+// Try to start audio as soon as possible
+document.addEventListener('DOMContentLoaded', () => {
+  // Try to auto-start with a silent sound to unlock audio
+  const context = Tone.context;
+  const silent = new Tone.Oscillator().toDestination();
+  silent.volume.value = -100; // Virtually silent
+  silent.start();
+  silent.stop("+0.1");
+});
+
+// Start sounds on any user interaction (required by browsers)
+function startAudioOnInteraction() {
+  Tone.start().then(() => {
+    // Play regular smash sounds
+    setInterval(() => {
+      soundGen.playSmashSound();
+    }, 4000);
+    
+    // Play collision sounds
+    playCollisionSounds();
+    
+    // Play one sound immediately
+    soundGen.playSmashSound();
+  }).catch(error => {
+    console.log("Could not start audio context:", error);
+  });
+}
+
+// Attach to various user interaction events
+['click', 'touchstart', 'keydown', 'scroll'].forEach(eventType => {
+  document.addEventListener(eventType, function onFirstInteraction() {
+    startAudioOnInteraction();
+    // Remove all event listeners after first interaction
+    ['click', 'touchstart', 'keydown', 'scroll'].forEach(e => {
+      document.removeEventListener(e, onFirstInteraction);
+    });
+  }, { once: true });
+});
