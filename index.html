@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sports Event Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    .logo {
+      max-width: 100px;
+      animation: fadeIn 1.5s;
+    }
+    .header {
+      background-color: #f8f9fa;
+      padding: 20px 0;
+      margin-bottom: 30px;
+      animation: slideInDown 1s;
+    }
+    .form-container {
+      animation: fadeIn 2s;
+    }
+    .responsive-iframe-container {
+      position: relative;
+      overflow: hidden;
+      padding-top: 56.25%;
+      margin-bottom: 30px;
+    }
+    .responsive-iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    @media (max-width: 768px) {
+      .logo {
+        max-width: 80px;
+      }
+    }
+    
+    /* Badminton Racquet Swing Animation */
+    .badminton-racquet {
+      position: absolute;
+      width: 60px;
+      height: 80px;
+      z-index: 100;
+      opacity: 0.6;
+    }
+    
+    .racquet-1 {
+      top: 20%;
+      left: 10%;
+      animation: racquetSwing1 4s infinite ease-in-out;
+      animation-delay: 0s;
+    }
+    
+    .racquet-2 {
+      top: 60%;
+      right: 15%;
+      animation: racquetSwing2 3.5s infinite ease-in-out;
+      animation-delay: 1.5s;
+      transform: scaleX(-1); /* Flip horizontally */
+    }
+    
+    .racquet-3 {
+      top: 35%;
+      left: 20%;
+      animation: racquetSwing3 5s infinite ease-in-out;
+      animation-delay: 3s;
+    }
+    
+    /* Racquet SVG */
+    .racquet-svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    @keyframes racquetSwing1 {
+      0% { transform: rotate(-30deg) translateY(0px); }
+      25% { transform: rotate(15deg) translateY(-10px); }
+      50% { transform: rotate(45deg) translateY(-5px); }
+      75% { transform: rotate(15deg) translateY(-10px); }
+      100% { transform: rotate(-30deg) translateY(0px); }
+    }
+    
+    @keyframes racquetSwing2 {
+      0% { transform: scaleX(-1) rotate(30deg) translateY(0px); }
+      30% { transform: scaleX(-1) rotate(-20deg) translateY(-8px); }
+      60% { transform: scaleX(-1) rotate(-50deg) translateY(-3px); }
+      80% { transform: scaleX(-1) rotate(-20deg) translateY(-8px); }
+      100% { transform: scaleX(-1) rotate(30deg) translateY(0px); }
+    }
+    
+    @keyframes racquetSwing3 {
+      0% { transform: rotate(0deg) translateY(0px) scale(1); }
+      20% { transform: rotate(25deg) translateY(-12px) scale(1.1); }
+      40% { transform: rotate(60deg) translateY(-8px) scale(1); }
+      60% { transform: rotate(25deg) translateY(-15px) scale(1.1); }
+      80% { transform: rotate(-10deg) translateY(-5px) scale(1); }
+      100% { transform: rotate(0deg) translateY(0px) scale(1); }
+    }
+    
+    /* Shuttlecock Animation */
+    .shuttlecock {
+      position: absolute;
+      width: 35px;
+      height: 35px;
+      z-index: 90;
+      opacity: 0.7;
+    }
+    
+    .shuttle-1 {
+      top: 15%;
+      left: -35px;
+      animation: shuttleFly1 6s infinite linear;
+      animation-delay: 0.5s;
+    }
+    
+    .shuttle-2 {
+      top: 45%;
+      right: -35px;
+      animation: shuttleFly2 5s infinite linear;
+      animation-delay: 2s;
+    }
+    
+    .shuttle-3 {
+      top: 75%;
+      left: -35px;
+      animation: shuttleFly3 7s infinite linear;
+      animation-delay: 4s;
+    }
+    
+    .shuttle-4 {
+      top: 30%;
+      left: -35px;
+      animation: shuttleFly4 8s infinite linear;
+      animation-delay: 6s;
+    }
+    
+    /* Shuttlecock SVG */
+    .shuttle-svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    @keyframes shuttleFly1 {
+      0% { 
+        left: -35px; 
+        transform: rotate(0deg) translateY(0px); 
+      }
+      20% { 
+        transform: rotate(45deg) translateY(-20px); 
+      }
+      40% { 
+        transform: rotate(90deg) translateY(-10px); 
+      }
+      60% { 
+        transform: rotate(135deg) translateY(-25px); 
+      }
+      80% { 
+        transform: rotate(180deg) translateY(-5px); 
+      }
+      100% { 
+        left: calc(100% + 35px); 
+        transform: rotate(225deg) translateY(-15px); 
+      }
+    }
+    
+    @keyframes shuttleFly2 {
+      0% { 
+        right: -35px; 
+        transform: rotate(180deg) translateY(0px); 
+      }
+      25% { 
+        transform: rotate(225deg) translateY(15px); 
+      }
+      50% { 
+        transform: rotate(270deg) translateY(8px); 
+      }
+      75% { 
+        transform: rotate(315deg) translateY(20px); 
+      }
+      100% { 
+        right: calc(100% + 35px); 
+        transform: rotate(360deg) translateY(10px); 
+      }
+    }
+    
+    @keyframes shuttleFly3 {
+      0% { 
+        left: -35px; 
+        transform: rotate(0deg) translateY(0px); 
+      }
+      30% { 
+        transform: rotate(60deg) translateY(-15px); 
+      }
+      60% { 
+        transform: rotate(120deg) translateY(-30px); 
+      }
+      90% { 
+        transform: rotate(180deg) translateY(-10px); 
+      }
+      100% { 
+        left: calc(100% + 35px); 
+        transform: rotate(200deg) translateY(-20px); 
+      }
+    }
+    
+    @keyframes shuttleFly4 {
+      0% { 
+        left: -35px; 
+        transform: rotate(0deg) translateY(0px) scale(1); 
+      }
+      25% { 
+        transform: rotate(90deg) translateY(-18px) scale(1.2); 
+      }
+      50% { 
+        transform: rotate(180deg) translateY(-25px) scale(1); 
+      }
+      75% { 
+        transform: rotate(270deg) translateY(-12px) scale(1.1); 
+      }
+      100% { 
+        left: calc(100% + 35px); 
+        transform: rotate(360deg) translateY(-8px) scale(1); 
+      }
+    }
+    
+    /* Floating court lines */
+    .court-line {
+      position: absolute;
+      background-color: rgba(26, 188, 156, 0.4);
+      animation: float 8s infinite ease-in-out;
+      z-index: 1;
+    }
+    
+    .line-1 {
+      width: 100px;
+      height: 2px;
+      top: 25%;
+      left: 20%;
+      animation-delay: 0s;
+    }
+    
+    .line-2 {
+      width: 80px;
+      height: 2px;
+      top: 65%;
+      right: 25%;
+      animation-delay: 2s;
+    }
+    
+    .line-3 {
+      width: 60px;
+      height: 2px;
+      top: 40%;
+      left: 60%;
+      animation-delay: 4s;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
+      50% { transform: translateY(-15px) rotate(3deg); opacity: 0.7; }
+    }
+    
+    /* Net animation */
+    .badminton-net {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 20%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.6) 80%, transparent 100%);
+      animation: netWave 3s infinite ease-in-out;
+      z-index: 2;
+      opacity: 0.5;
+    }
+    
+    @keyframes netWave {
+      0%, 100% { transform: translateX(-50%) scaleY(1); }
+      50% { transform: translateX(-50%) scaleY(1.2); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Badminton Racquets -->
+  <div class="badminton-racquet racquet-1">
+    <svg class="racquet-svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Racquet Head -->
+      <ellipse cx="50" cy="35" rx="25" ry="30" stroke="#8B4513" stroke-width="4" fill="none"/>
+      <!-- Strings -->
+      <line x1="30" y1="35" x2="70" y2="35" stroke="#FFF" stroke-width="1"/>
+      <line x1="35" y1="15" x2="35" y2="55" stroke="#FFF" stroke-width="1"/>
+      <line x1="45" y1="10" x2="45" y2="60" stroke="#FFF" stroke-width="1"/>
+      <line x1="55" y1="10" x2="55" y2="60" stroke="#FFF" stroke-width="1"/>
+      <line x1="65" y1="15" x2="65" y2="55" stroke="#FFF" stroke-width="1"/>
+      <line x1="30" y1="25" x2="70" y2="25" stroke="#FFF" stroke-width="1"/>
+      <line x1="30" y1="45" x2="70" y2="45" stroke="#FFF" stroke-width="1"/>
+      <!-- Handle -->
+      <rect x="47" y="65" width="6" height="60" fill="#654321"/>
+      <rect x="45" y="120" width="10" height="8" fill="#8B4513"/>
+    </svg>
+  </div>
+  
+  <div class="badminton-racquet racquet-2">
+    <svg class="racquet-svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Racquet Head -->
+      <ellipse cx="50" cy="35" rx="25" ry="30" stroke="#E74C3C" stroke-width="4" fill="none"/>
+      <!-- Strings -->
+      <line x1="30" y1="35" x2="70" y2="35" stroke="#FFF" stroke-width="1"/>
+      <line x1="35" y1="15" x2="35" y2="55" stroke="#FFF" stroke-width="1"/>
+      <line x1="45" y1="10" x2="45" y2="60" stroke="#FFF" stroke-width="1"/>
+      <line x1="55" y1="10" x2="55" y2="60" stroke="#FFF" stroke-width="1"/>
+      <line x1="65" y1="15" x2="65" y2="55" stroke="#FFF" stroke-width="1"/>
+      <line x1="30" y1="25" x2="70" y2="25" stroke="#FFF" stroke-width="1"/>
+      <line x1="30" y1="45" x2="70" y2="45" stroke="#FFF" stroke-width="1"/>
+      <!-- Handle -->
+      <rect x="47" y="65" width="6" height="60" fill="#654321"/>
+      <rect x="45" y="120" width="10" height="8" fill="#E74C3C"/>
+    </svg>
+  </div>
+
+  <div class="badminton-racquet racquet-3">
+    <svg class="racquet-svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Racquet Head -->
+      <ellipse cx="50" cy="35" rx="25" ry="30" stroke="#3498DB" stroke-width="4" fill="none"/>
+      <!-- Strings -->
+      <line x1="30" y1="35" x2="70" y2="35" stroke="#FFF" stroke-width="1"/>
+      <line x1="35" y1="15" x2="35" y2="55" stroke="#FFF" stroke-width="1"/>
+      <line x1="45" y1="10" x2="45" y2="60" stroke="#FFF" stroke-width="1"/>
+      <line x1="55" y1="10" x2="55" y2="60" stroke="#FFF" stroke-width="1"/>
+      <line x1="65" y1="15" x2="65" y2="55" stroke="#FFF" stroke-width="1"/>
+      <line x1="30" y1="25" x2="70" y2="25" stroke="#FFF" stroke-width="1"/>
+      <line x1="30" y1="45" x2="70" y2="45" stroke="#FFF" stroke-width="1"/>
+      <!-- Handle -->
+      <rect x="47" y="65" width="6" height="60" fill="#654321"/>
+      <rect x="45" y="120" width="10" height="8" fill="#3498DB"/>
+    </svg>
+  </div>
+
+  <!-- Shuttlecocks -->
+  <div class="shuttlecock shuttle-1">
+    <svg class="shuttle-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Cork head -->
+      <circle cx="50" cy="70" r="8" fill="#F5DEB3"/>
+      <circle cx="50" cy="70" r="6" fill="#DEB887"/>
+      <!-- Feathers -->
+      <path d="M50 62 L45 20 L50 25 L55 20 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M42 64 L25 25 L35 35 L45 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M58 64 L75 25 L65 35 L55 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M38 66 L20 35 L32 40 L42 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M62 66 L80 35 L68 40 L58 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+    </svg>
+  </div>
+  
+  <div class="shuttlecock shuttle-2">
+    <svg class="shuttle-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Cork head -->
+      <circle cx="50" cy="70" r="8" fill="#F5DEB3"/>
+      <circle cx="50" cy="70" r="6" fill="#DEB887"/>
+      <!-- Feathers -->
+      <path d="M50 62 L45 20 L50 25 L55 20 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M42 64 L25 25 L35 35 L45 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M58 64 L75 25 L65 35 L55 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M38 66 L20 35 L32 40 L42 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M62 66 L80 35 L68 40 L58 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+    </svg>
+  </div>
+  
+  <div class="shuttlecock shuttle-3">
+    <svg class="shuttle-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Cork head -->
+      <circle cx="50" cy="70" r="8" fill="#F5DEB3"/>
+      <circle cx="50" cy="70" r="6" fill="#DEB887"/>
+      <!-- Feathers -->
+      <path d="M50 62 L45 20 L50 25 L55 20 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M42 64 L25 25 L35 35 L45 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M58 64 L75 25 L65 35 L55 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M38 66 L20 35 L32 40 L42 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M62 66 L80 35 L68 40 L58 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="shuttlecock shuttle-4">
+    <svg class="shuttle-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Cork head -->
+      <circle cx="50" cy="70" r="8" fill="#F5DEB3"/>
+      <circle cx="50" cy="70" r="6" fill="#DEB887"/>
+      <!-- Feathers -->
+      <path d="M50 62 L45 20 L50 25 L55 20 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M42 64 L25 25 L35 35 L45 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M58 64 L75 25 L65 35 L55 30 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M38 66 L20 35 L32 40 L42 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+      <path d="M62 66 L80 35 L68 40 L58 38 Z" fill="#FFF" stroke="#DDD" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <!-- Floating court lines -->
+  <div class="court-line line-1"></div>
+  <div class="court-line line-2"></div>
+  <div class="court-line line-3"></div>
+
+  <!-- Badminton net -->
+  <div class="badminton-net"></div>
+
+  <div class="header text-center">
+    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHEyOWkza2xocGt4cmI0NG9sb283NDd6dGlyZmZoOHlwczhtYWJtNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/UuKevjxS75vbLjiHsV/giphy.gif" alt="Badminton Logo" class="logo">
+    <h1 class="mt-3 animate__animated animate__fadeIn">Sports Event Registration</h1>
+  </div>
+
+  <div class="container form-container">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="card shadow-lg">
+          <div class="card-body p-4">
+            <div class="responsive-iframe-container">
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdJicUtz-nssfJPSjuNAlMyYBJbxDrU5k0x3XXvhH2Tkz_aHg/viewform?embedded=true" class="responsive-iframe" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
